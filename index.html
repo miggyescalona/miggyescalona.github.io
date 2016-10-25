@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stranger Things Quiz</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+</head>
+<body>
+<div class="header">
+  <div class="container-fluid">
+    <img src="images/netflixlogo.png" style="height:60px;width:100px;margin-left:170px;">
+  </div>
+</div>
+<div class="main-container">
+    <div class="banner">
+        <img src="images/banner2transparent.png" class ="banner-image">
+    </div>
+
+    <div class="main-body">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li><a href="#main-body" onclick="myFunction()" id="homepage">Home</a></li>
+              <li><a href="#main-body" onclick="myFunction()" id="quizpage">Quiz Page</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="main-content">
+                <div id='container'>
+                  <div class="homepagediv" id="homepagediv">
+                        <img src="images/danger2.png" style="height:200px;float:left;margin-top:-60px">
+                        <h3>Introduction</h3>
+                        <p>Stranger Things is an American science fiction-horror web television series created by the Duffer Brothers. It is written and directed by Matt and Ross Duffer and executive-produced by Shawn Levy. It stars Winona Ryder, David Harbour, Finn Wolfhard, Millie Bobby Brown, Gaten Matarazzo, Caleb McLaughlin, Natalia Dyer, Charlie Heaton, Cara Buono, and Matthew Modine. The plot follows the disappearance of a young boy, and a telekinetic girl who helps his friends in their search, while the boy's older brother, his mother, and the town police chief start their own investigations.</p>
+
+                        <p>In a small town where everyone knows everyone, a peculiar incident starts a chain of events that leads to the disappearance of a child - which begins to tear at the fabric of an otherwise peaceful community. Dark government agencies and seemingly malevolent supernatural forces converge on the town, while a few locals begin to understand that there's more going on than meets the eye.</p>
+
+                        <p>The plot follows the disappearance of a young boy (Will), and a telekinetic girl (Eleven) who helps his friends in their search, while the boy's older brother (Jonathan), his mother (Joyce), and the town police chief (Chief Jim Hopper) start their own investigations.</p>
+
+                        <p>The show is set in the 1980s in the fictional town of Hawkins, Indiana, and is an homage to 1980s pop culture, inspired and aesthetically informed by the works of Steven Spielberg, John Carpenter, Stephen King, Robert Zemeckis, and George Lucas, among others.</p>
+
+                        <!--<br>
+
+                        <h3>Chapter 1</h3>
+                        <p>A monster is loose: It's 1983. In an isolated laboratory in Hawkins, Indiana, some kind of monster has escaped from its holding cell and is killing whoever gets in its way.
+
+                        <p>A boy goes missing: Young Will Byers (Noah Schnapp) and his friends Mike (Finn Wolfhard), Dustin (Gaten Matarazzo), and Lucas (Caleb McLaughlin) are playing an intense role-playing game. The game is cut short by Michael's mom. Will, Dustin, and Lucas grab their bikes and leave for home.
+
+                        <p>While racing, Will separates from the other guys and finds himself close to the laboratory when he senses something is following him. When he gets home, he finds that his mother and brother aren't home. Sensing that the monster is still after him, Will runs to a shed behind the house, arms himself with a gun, and holds his ground. None of that helps. With a flickering light, poof, Will is gone.
+
+                        <p>The next morning, Will's mom, Joyce (Winona Ryder), and older brother, Jonathan (Charlie Heaton), discover that Will isn't home. She decides to report Will missing to the police chief, Jim Hopper, a mess of a man.</p>
+
+                        <p>He insists on speaking with Joyce's ex-husband, Will and Jonathan's father, but she is sure Will would never go to him. She insists that he look outside her family for Will's abductor.</p>
+
+                        <p>A young girl with strange powers is on the run: Meanwhile, a young girl named Eleven arrives at Benny's Diner. Her head is shaved, she's wearing a hospital gown, she has limited speech, and she's ravenously hungry.</p>
+
+                        <p>After Benny feeds her, he calls for social workers to come and pick her up. But instead of the social workers, armed agents arrive to take Eleven. In the end, Benny is killed, and somehow Eleven fights off the agents and escapes.</p>
+
+                        <p>Worlds collide: Tired of waiting for the police to do something, Will's friends decide to search for him on their own. That's when they meet Eleven.</p>
+
+                        <p>Joyce gets a phone call. Despite the static, she swears she can hear Will breathing on the other end.</p>-->
+                  </div>
+                  <div class="quizdiv">
+                    <div id='quiz'></div>
+                    <div class="btn btn-success" class='button' id='next' onclick="myFunction()"><a href='#'>Next</a></div>
+                    <div class="btn btn-success" class='button' id='prev' onclick="myFunction()"><a href='#'>Prev</a></div>
+                    <div class="btn btn-success" class='button' id='start' style="margin-left:10px"> <a href='#'>Start Over</a></div>
+                    <div class="btn btn-success" class='button' id='view-results' onclick="myFunction()"> <a href='#'>View All Results</a></div>
+                      <div class="container-fluid">
+                        <div style="width:100%">
+                           <p class="quizprogress" id="quizprogress" style="margin-left:50%">Quiz Progress:<p class="progress-count" id="progress-count">1/10</p></p>
+                          <div class="progress" id="progress" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                              <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:10%">10%
+                              </div>
+                          </div>
+                        </div>
+                            <!--Question 1-->
+                            <div style="width:100%">
+                                <p class="results-bar" id="results-bar" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 1:<p class="results-count" id="results-count" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                                 <div class="progress" id="progresstwo" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                  <div class="progress-bar progress-bar-striped active" id="progressbar1" role="progressbar"
+                                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                  </div>
+                                </div>
+                            </div>   
+                            <!--Question 2-->
+                            <div style="width:100%">
+                              <p class="results-bar2" id="results-bar2" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 2:<p class="results-count2" id="results-count2" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo2" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                              <!--Question 3-->
+                            <div style="width:100%">
+                              <p class="results-bar3" id="results-bar3" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 3:<p class="results-count3" id="results-count3" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo3" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                             <!--Question 4-->
+                            <div style="width:100%">
+                              <p class="results-bar4" id="results-bar4" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 4:<p class="results-count4" id="results-count4" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo4" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                              <!--Question 5-->
+                            <div style="width:100%">
+                              <p class="results-bar5" id="results-bar5" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 5:<p class="results-count5" id="results-count5" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo5" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                              <!--Question 6-->
+                            <div style="width:100%">
+                              <p class="results-bar6" id="results-bar6" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 6:<p class="results-count6" id="results-count6" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo6" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                                <!--Question 7-->
+                            <div style="width:100%">
+                              <p class="results-bar7" id="results-bar7" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 7:<p class="results-count7" id="results-count7" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo7" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                                <!--Question 8-->
+                            <div style="width:100%">
+                              <p class="results-bar8" id="results-bar8" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 8:<p class="results-count8" id="results-count8" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo8" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                                <!--Question 9-->
+                            <div style="width:100%">
+                              <p class="results-bar9" id="results-bar9" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 9:<p class="results-count9" id="results-count9" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo9" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                                <!--Question 10-->
+                            <div style="width:100%">
+                              <p class="results-bar10" id="results-bar10" style="display:none;color:black;clear: both; margin-top: 10px; margin-left:50%;">Question 10:<p class="results-count10" id="results-count10" style="display:none;color:black;float:left;margin-left:58%;margin-top:-30px"></p></p>
+                               <div class="progress" id="progresstwo10" style="clear:both;margin-top:10px;margin-left:70px;display:none">
+                                <div class="progress-bar progress-bar-striped active" id="progressbar" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:20%">10%
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+          </div>
+          <div class="rightbody">
+            <img src="images/elevenbleed2.png" style="height:450px;float:right;margin-right:40px;margin-top:-50px"/>
+          </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+	(function() {
+  var questions = [{
+    question:"A young girl with psychokinetic abilities and a limited vocabulary. She befriends Lucas, Dustin, and Mike.",
+    choices: ["Jane","Twelve","Eleven","Nancy","Karen"],
+    correctAnswer: 2
+  }, {
+    question: "The show is set in the 1980s in the fictional town of _________?",
+    choices: ["Hawkins, Indiana", "Cleveland, Ohio", "Hell's Kitchen, New York", "Scranton, Pennsylvania", "King's Landing, Westeros"],
+    correctAnswer: 0
+  }, {
+    question: "Will's Mother, Joyce, is played by ________?",
+    choices: ["Emilia Clarke", "Jennifer Lawrence", "Diane Krueger", "Lena Headey", "Winona Ryder"],
+    correctAnswer: 4
+  }, {
+    question: "What is the Dungeons & Dragons inspired name Eleven and the boys give the monster from the Upside-Down?",
+    choices: ["Faceless Beast", "Beholder", "Mind Flyer", "Demogorgon", "Ramsay Bolton"],
+    correctAnswer: 3
+  }, {
+    question: "In addition to getting very weak, what tell-tale physical reaction does Eleven have whenever she uses her powers?",
+    choices: ["She can't speak", "Blood comes out of her ears", "Vision gets blurry", "Nose bleed", "Enhanced senses"],
+    correctAnswer: 3
+  }, {
+    question: "Where did the police claim to find Will's body",
+    choices: ["The Lake", "The Lab", "The Gym", "The Woods", "The School"],
+    correctAnswer: 0
+  }, {
+    question: "When Hoyce asks Will where he is, how does he respond?",
+    choices: ["The Walls", "Right here", "Outside", "Behind you", "Dead"],
+    correctAnswer: 1
+  }, {
+    question: "What is the name of the boy's biology teacher",
+    choices: ["Mr. Wheeler", "Mr. Clarke", "Mr. Kenny", "Mr. Sinclair", "Mr. Henderson"],
+    correctAnswer: 0
+  }, {
+    question: "What time did Mike tell Eleven to meet him after school?",
+    choices: ["3:15", "3:10", "3:20", "3:30", "4:15"],
+    correctAnswer: 4
+  }, {
+    question: "What's the name of the alternative dimension?",
+    choices: ["The Otherside", "Valhalla", "Underworld", "Upside-Down", "Inside-Out"],
+    correctAnswer: 3
+  }];
+  
+  var questionCounter = 0; //Tracks question number
+  var selections = []; //Array containing user choices
+  var quiz = $('#quiz'); //Quiz div object
+  var numberOfTakes = 1;
+
+
+  // Display Quiz Page
+  $('#quizpage').click(function(){
+        /*Question 1*/
+        $('#progresstwo').hide();
+        $('#results-bar').hide();
+        $('#results-count').hide();
+        /*Question 2*/
+        $('#progresstwo2').hide();
+        $('#results-bar2').hide();
+        $('#results-count2').hide();
+    displayNext();
+
+    $('#homepagediv').hide();
+    $('#progress').hide().fadeIn();
+    $('#next').hide().fadeIn();
+    $('#quizprogress').hide().fadeIn();
+    $('#progress-count').hide().fadeIn();
+  });
+
+  // Display Home Page
+  $('#homepage').click(function(){
+      $('#homepagediv').show();
+      $('#quizdiv').hide();
+      $('#view-results').hide();
+      $('#start').hide();
+      $('#next').hide();
+      $('#prev').hide();
+      $('#progress').hide();
+      $('#quiz').hide();
+      $("p").hide().fadeIn();
+      $("h3").hide().fadeIn();
+      document.getElementById("quizprogress").style.display = "none";
+      document.getElementById("progress-count").style.display = "none";
+        /*Question 1*/
+      document.getElementById("progresstwo").style.display = "none";
+      document.getElementById("results-bar").style.display = "none";
+      document.getElementById("results-count").style.display = "none";
+        /*Question 2*/
+      document.getElementById("progresstwo2").style.display = "none";
+      document.getElementById("results-bar2").style.display = "none";
+      document.getElementById("results-count2").style.display = "none";
+         /*Question 3*/
+      document.getElementById("progresstwo3").style.display = "none";
+      document.getElementById("results-bar3").style.display = "none";
+      document.getElementById("results-count3").style.display = "none";
+           /*Question 4*/
+      document.getElementById("progresstwo4").style.display = "none";
+      document.getElementById("results-bar4").style.display = "none";
+      document.getElementById("results-count4").style.display = "none";
+           /*Question 5*/
+      document.getElementById("progresstwo5").style.display = "none";
+      document.getElementById("results-bar5").style.display = "none";
+      document.getElementById("results-count5").style.display = "none";
+           /*Question 6*/
+      document.getElementById("progresstwo6").style.display = "none";
+      document.getElementById("results-bar6").style.display = "none";
+      document.getElementById("results-count6").style.display = "none";
+           /*Question 7*/
+      document.getElementById("progresstwo7").style.display = "none";
+      document.getElementById("results-bar7").style.display = "none";
+      document.getElementById("results-count7").style.display = "none";
+           /*Question 8*/
+      document.getElementById("progresstwo8").style.display = "none";
+      document.getElementById("results-bar8").style.display = "none";
+      document.getElementById("results-count8").style.display = "none";
+           /*Question 9*/
+      document.getElementById("progresstwo9").style.display = "none";
+      document.getElementById("results-bar9").style.display = "none";
+      document.getElementById("results-count9").style.display = "none";
+           /*Question 10*/
+      document.getElementById("progresstwo10").style.display = "none";
+      document.getElementById("results-bar10").style.display = "none";
+      document.getElementById("results-count10").style.display = "none";
+
+    });
+
+  // View Results 
+  $('#view-results').click(function(){
+    totalQuestionsTaken();
+    /*Question 1*/
+    $('#progresstwo').hide().fadeIn();
+    $('#results-bar').hide().fadeIn();
+    $('#results-count').hide().fadeIn();
+    /*Question 2*/
+    $('#progresstwo2').hide().fadeIn();
+    $('#results-bar2').hide().fadeIn();
+    $('#results-count2').hide().fadeIn();
+     /*Question 3*/
+    $('#progresstwo3').hide().fadeIn();
+    $('#results-bar3').hide().fadeIn();
+    $('#results-count3').hide().fadeIn();
+     /*Question 4*/
+    $('#progresstwo4').hide().fadeIn();
+    $('#results-bar4').hide().fadeIn();
+    $('#results-count4').hide().fadeIn();
+     /*Question 5*/
+    $('#progresstwo5').hide().fadeIn();
+    $('#results-bar5').hide().fadeIn();
+    $('#results-count5').hide().fadeIn();
+     /*Question 6*/
+    $('#progresstwo6').hide().fadeIn();
+    $('#results-bar6').hide().fadeIn();
+    $('#results-count6').hide().fadeIn();
+     /*Question 7*/
+    $('#progresstwo7').hide().fadeIn();
+    $('#results-bar7').hide().fadeIn();
+    $('#results-count7').hide().fadeIn();
+     /*Question 8*/
+    $('#progresstwo8').hide().fadeIn();
+    $('#results-bar8').hide().fadeIn();
+    $('#results-count8').hide().fadeIn();
+     /*Question 9*/
+    $('#progresstwo9').hide().fadeIn();
+    $('#results-bar9').hide().fadeIn();
+    $('#results-count9').hide().fadeIn();
+     /*Question 10*/
+    $('#progresstwo10').hide().fadeIn();
+    $('#results-bar10').hide().fadeIn();
+    $('#results-count10').hide().fadeIn();
+      $('#start').hide().fadeIn();
+      $('#quizdiv').hide();
+      $('#view-results').hide();
+      $('#next').hide();
+      $('#prev').hide();
+      $('#progress').hide();
+      $('#quiz').hide();
+      totalQuestionsTaken();
+  });
+
+    $('#start').click(function(){
+              /*Question 1*/
+      document.getElementById("progresstwo").style.display = "none";
+      document.getElementById("results-bar").style.display = "none";
+      document.getElementById("results-count").style.display = "none";
+        /*Question 2*/
+      document.getElementById("progresstwo2").style.display = "none";
+      document.getElementById("results-bar2").style.display = "none";
+      document.getElementById("results-count2").style.display = "none";
+         /*Question 3*/
+      document.getElementById("progresstwo3").style.display = "none";
+      document.getElementById("results-bar3").style.display = "none";
+      document.getElementById("results-count3").style.display = "none";
+           /*Question 4*/
+      document.getElementById("progresstwo4").style.display = "none";
+      document.getElementById("results-bar4").style.display = "none";
+      document.getElementById("results-count4").style.display = "none";
+           /*Question 5*/
+      document.getElementById("progresstwo5").style.display = "none";
+      document.getElementById("results-bar5").style.display = "none";
+      document.getElementById("results-count5").style.display = "none";
+           /*Question 6*/
+      document.getElementById("progresstwo6").style.display = "none";
+      document.getElementById("results-bar6").style.display = "none";
+      document.getElementById("results-count6").style.display = "none";
+           /*Question 7*/
+      document.getElementById("progresstwo7").style.display = "none";
+      document.getElementById("results-bar7").style.display = "none";
+      document.getElementById("results-count7").style.display = "none";
+           /*Question 8*/
+      document.getElementById("progresstwo8").style.display = "none";
+      document.getElementById("results-bar8").style.display = "none";
+      document.getElementById("results-count8").style.display = "none";
+           /*Question 9*/
+      document.getElementById("progresstwo9").style.display = "none";
+      document.getElementById("results-bar9").style.display = "none";
+      document.getElementById("results-count9").style.display = "none";
+           /*Question 10*/
+      document.getElementById("progresstwo10").style.display = "none";
+      document.getElementById("results-bar10").style.display = "none";
+      document.getElementById("results-count10").style.display = "none";
+    });
+
+  // Increase progressbar
+ /* $('#next').click(function(){
+  nextProgressBar();
+  });
+
+  // Decrease progressbar
+  $('#prev').click(function(){
+  prevProgressBar();
+  });*/
+
+    function progressQuestionCounter(){
+    document.getElementById("progress-count").innerHTML = questionCounter + 1 + "/10";
+  }
+
+  // Click handler for the 'next' button
+  $('#next').on('click', function (e) {
+    e.preventDefault();
+    
+    // Suspend click listener during fade animation
+    if(quiz.is(':animated')) {        
+      return false;
+    }
+    choose();
+    
+    // If no user selection, progress is stopped
+    if (isNaN(selections[questionCounter])) {
+      alert('Please make a selection!');
+    } else {
+      questionCounter++;
+      progressQuestionCounter();
+      totalQuestionsTaken();
+      nextProgressBar();
+      displayNext();
+    }
+  });
+  
+  // Click handler for the 'prev' button
+  $('#prev').on('click', function (e) {
+    e.preventDefault();
+    
+    if(quiz.is(':animated')) {
+      return false;
+    }
+    choose();
+    questionCounter--;
+    prevProgressBar();
+    displayNext();
+  });
+  
+  // Click handler for the 'Start Over' button
+  $('#start').on('click', function (e) {
+    e.preventDefault();
+    
+    if(quiz.is(':animated')) {
+      return false;
+    }
+
+    questionCounter = 0;
+    selections = [];
+    displayNext();
+    $('#start').hide();
+    $('#view-results').hide();
+    numberOfTakes++;
+  });
+
+  
+  // Animates buttons on hover
+  $('.button').on('mouseenter', function () {
+    $(this).addClass('active');
+  });
+  $('.button').on('mouseleave', function () {
+    $(this).removeClass('active');
+  });
+
+  // Creates and returns the div that contains the questions and 
+  // the answer selections
+  function createQuestionElement(index) {
+    var qElement = $('<div>', {
+      id: 'question'
+    });
+    
+    var header = $('<h2>Question ' + (index + 1) + ':</h2>');
+    qElement.append(header);
+    
+    var question = $('<p>').append(questions[index].question);
+    qElement.append(question);
+    
+    var radioButtons = createRadios(index);
+    qElement.append(radioButtons);
+    
+    return qElement;
+  }
+  
+  // Creates a list of the answer choices as radio inputs
+  function createRadios(index) {
+    var radioList = $('<ul>');
+    var item;
+    var input = '';
+    for (var i = 0; i < questions[index].choices.length; i++) {
+      item = $('<li>');
+      input = '<input style="margin-right:10px" type="radio" name="answer" value=' + i + ' />';
+      input += questions[index].choices[i];
+      item.append(input);
+      radioList.append(item);
+    }
+    return radioList;
+  }
+  
+  // Reads the user selection and pushes the value to an array
+  function choose() {
+    selections[questionCounter] = +$('input[name="answer"]:checked').val();
+  }
+  
+  // Displays next requested element
+  function displayNext() {
+    quiz.fadeOut(function() {
+      $('#question').remove();
+      
+      if(questionCounter < questions.length){
+        var nextQuestion = createQuestionElement(questionCounter);
+        quiz.append(nextQuestion).fadeIn();
+        if (!(isNaN(selections[questionCounter]))) {
+          $('input[value='+selections[questionCounter]+']').prop('checked', true);
+        }
+        
+        // Controls display of 'prev' button
+        if(questionCounter === 1){
+          $('#prev').show();
+        } else if(questionCounter === 0){
+          
+          $('#prev').hide();
+          $('#next').show();
+          $('#progress').show();
+          document.getElementById("quizprogress").style.display = "unset";
+          document.getElementById("progress-count").style.display = "unset";
+        }
+      }else {
+        var scoreElem = displayScore();
+        quiz.append(scoreElem).fadeIn();
+        $('#view-results').show();
+        $('#start').show();
+        document.getElementById("quizprogress").style.display = "none";
+        document.getElementById("progress-count").style.display = "none";
+        $('#next').hide();
+        $('#prev').hide();
+        $('#progress').hide();
+      }
+    });
+  }
+
+  var num=20;
+
+  function nextProgressBar() {
+  if (num <=100){
+  var width = num;
+  document.getElementById("progressbar").style.width = width + '%';
+  document.getElementById("progressbar").innerHTML = width + '%';
+  num += 10;
+  } 
+  else {
+  num = 20;
+  document.getElementById("progressbar").style.width = 10 + '%';
+  document.getElementById("progressbar").innerHTML = 10+ '%';
+  }
+  }
+
+  function prevProgressBar(){
+  num -= 10; 
+  var width = num - 10;
+  document.getElementById("progressbar").style.width = width + '%';
+  document.getElementById("progressbar").innerHTML = width + '%';
+  }
+  
+  // Computes score and returns a paragraph element to be displayed
+  function displayScore() {
+    var score = $('<p>',{id: 'question'});
+    
+    var numCorrect = 0;
+    for (var i = 0; i < selections.length; i++) {
+      if (selections[i] === questions[i].correctAnswer) {
+        numCorrect++;
+      }
+    }
+    
+    score.append('You got ' + numCorrect + ' questions out of ' +
+                 questions.length + ' right!!!');
+    return score;
+  }
+
+  var num1=20;
+
+  function totalQuestionsTaken(){
+    var score = $('<p>',{id: 'question'});
+    if(selections[0] == questions[0].correctAnser){
+      document.getElementById("progressbar1").style.width = 100 + '%';
+      document.getElementById("progressbar1").innerHTML = 100 + '%';
+      num1 += 10;
+    }
+    document.getElementById("results-count").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count2").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count3").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count4").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count5").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count6").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count7").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count8").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count9").innerHTML = 0 + "/" + numberOfTakes;
+    document.getElementById("results-count10").innerHTML = 0 + "/" + numberOfTakes;
+  }
+
+})();
+</script>
+</html>
