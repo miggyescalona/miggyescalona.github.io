@@ -452,7 +452,7 @@
   // Click handler for the 'Start Over' button
   $('#start').on('click', function (e) {
     e.preventDefault();
-    
+    totalQuestionsTaken();
     if(quiz.is(':animated')) {
       return false;
     }
